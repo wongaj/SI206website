@@ -1,0 +1,41 @@
+
+#logoimg{
+	float: left;
+	width: 20%;
+	/*display: inline-block;*/
+	margin: 2%;
+
+}
+
+#tabs{
+	padding-bottom: -1px;
+}
+
+li{
+	background: white;
+	width: 18.5%;
+	text-align: center;
+	border-radius: 10px;
+}
+
+header{
+	background-image: url(http://i.imgur.com/A7s5V15.jpg);
+	background-size: 100%;
+	background-attachment: fixed;
+	padding-bottom: 15%;
+}
+
+footer{
+	position: absolute;
+}
+
+ul{
+	display: block;
+	vertical-align: center;
+	padding-top: 7.01%;
+
+}
+
+@media screen and (max-width: 800px){
+
+}
