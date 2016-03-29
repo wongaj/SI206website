@@ -11,9 +11,30 @@
 	padding-bottom: -1px;
 }
 
+.nav-link{
+	font-size: 2.5vh;
+	font-weight: bold;
+	
+}
+
+.nav-link:hover{
+	color: red;
+}
+
+.tabtitle{
+	background-color: black;
+	font-size: 6vw;
+	font-weight: bold;
+	text-align: center;
+}
+.contentwindow{
+	background-color: gray;
+	border-radius: 1%;
+	padding: 5 vw;
+}
 li{
 	background: white;
-	width: 18.5%;
+	width: 14.5%;
 	text-align: center;
 	border-radius: 10px;
 }
@@ -22,7 +43,7 @@ header{
 	background-image: url(http://i.imgur.com/A7s5V15.jpg);
 	background-size: 100%;
 	background-attachment: fixed;
-	padding-bottom: 15%;
+	padding-bottom: 15vh;
 }
 
 footer{

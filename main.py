@@ -32,40 +32,44 @@ class IndexHandler(webapp2.RequestHandler):
         pathstring = self.request.path
         template = JINJA_ENVIRONMENT.get_template('templates/index.html')
         if pathstring == "/index.html":
-            self.response.write(template.render({'title': 'Alden Wong', 'title2':'Home', 'Home':'HOME', 'Family':'Family', 'Food':'Food', 'Login':'Login'}))
-        elif pathstring == "/family.html":
+            self.response.write(template.render({'title': 'Home', 'Home':'Home', 'about':'About', 'menu':'Menu', 'online':'Order Online', 'Login':'Contact'}))
+        elif pathstring == "/about.html":
             template = JINJA_ENVIRONMENT.get_template(templatestring+pathstring)
-            self.response.write(template.render({'title': 'Family', 'Home':'Home', 'Family':'FAMILY', 'Food':'Food', 'Login':'Login'}))
-        elif pathstring == "/food.html":
+            self.response.write(template.render({'title': 'About', 'Home':'Home', 'about':'About', 'menu':'Menu', 'online':'Order Online', 'Login':'Contact'}))
+        elif pathstring == "/menu.html":
             template = JINJA_ENVIRONMENT.get_template(templatestring+pathstring)
-            self.response.write(template.render({'title': 'Food', 'Home':'Home', 'Family':'Family', 'Food':'FOOD', 'Login':'Login'}))
+            self.response.write(template.render({'title': 'Menu', 'Home':'Home', 'about':'About', 'menu':'Menu', 'online':'Order Online', 'Login':'Contact'}))
+        elif pathstring == "/online.html":
+            template = JINJA_ENVIRONMENT.get_template(templatestring+pathstring)
+            self.response.write(template.render({'title':'Order Online', 'Home':'Home', 'about':'About', 'menu':'Menu', 'online':'Order Online', 'Login':'Contact'}))    
         else:
-            self.response.write(template.render({'title': 'Alden Wong', 'title2':'Home', 'Home':'HOME', 'Family':'Family', 'Food':'Food', 'Login':'Login'}))
+            self.response.write(template.render({'title': 'Home',  'Home':'HOME', 'about':'About', 'menu':'Menu', 'online':'Order Online', 'Login':'Contact'}))
                 
 
 class LoginHandler(webapp2.RequestHandler):
     def get(self):
         logging.info("GET")
         template = JINJA_ENVIRONMENT.get_template('templates/login.html')
-        self.response.write(template.render({'title': 'Login', 'Home':'Home', 'Family':'Family', 'Food':'Food', 'Login':'LOGIN'}))
+        self.response.write(template.render({'title': 'Login', 'Home':'Home', 'about':'About', 'menu':'Menu', 'Login':'LOGIN'}))
     def post(self):   
         logging.info("POST")
         username = self.request.get('name')
         userpass = self.request.get('pw')
         if username == 'Colleen' and userpass == 'pass':
             template = JINJA_ENVIRONMENT.get_template('templates/success.html')
-            self.response.write(template.render({'title': 'Logged in...', 'Home':'Home', 'Family':'Family', 'Food':'Food', 'Login':'LOGIN', 'message':'You have successfully logged in!! Way to go!'}))
+            self.response.write(template.render({'title': 'Logged in...', 'Home':'Home', 'about':'About', 'menu':'Menu', 'Login':'LOGIN', 'message':'You have successfully logged in!! Way to go!'}))
             logging.info("correct input")
         else:
             template = JINJA_ENVIRONMENT.get_template('templates/login.html')
-            self.response.write(template.render({'title': 'Login', 'Home':'Home', 'Family':'Family', 'Food':'Food', 'Login':'LOGIN', 'message':'Bad credentials. Try again.'}))
+            self.response.write(template.render({'title': 'Login', 'Home':'Home', 'about':'About', 'menu':'Menu', 'Login':'LOGIN', 'message':'Bad credentials. Try again.'}))
             logging.info("incorrect input. try again")
 
 app = webapp2.WSGIApplication([
     ('/', IndexHandler),
     ('/index.html', IndexHandler),
-    ('/family.html', IndexHandler),
-    ('/food.html', IndexHandler),
+    ('/about.html', IndexHandler),
+    ('/menu.html', IndexHandler),
+    ('/online.html', IndexHandler),
     ('/login.html', LoginHandler),
     ('success.html', LoginHandler)
 ], debug=True)
