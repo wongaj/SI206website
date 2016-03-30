@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>{{title}}</title>
+	<title>Cobab's Pizza - {{title}}</title>
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
@@ -12,17 +12,44 @@
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 	<link rel="stylesheet" type="text/css" href="css/stylesheet.css">
+
+	<script type="text/javascript">
+		window.onload = function() {
+			var siteurl = document.URL;
+			document.getElementById('menunav').className = "nav-item";
+			document.getElementById('aboutnav').className = "nav-item";
+			document.getElementById('onlinenav').className = "nav-item";
+			document.getElementById('contactnav').className = "nav-item";
+			document.getElementById('indexnav').className = "nav-item";
+			if(siteurl.indexOf("menu") > 0){
+				document.getElementById('menunav').className += " active";
+			}
+			else if(siteurl.indexOf("about") > 0){
+				document.getElementById('aboutnav').className += " active";
+			}
+			else if(siteurl.indexOf("online") > 0){
+				document.getElementById('onlinenav').className += " active";
+			}
+			else if(siteurl.indexOf("contact") > 0){
+				document.getElementById('contactnav').className += " active";
+			}
+			else{
+				document.getElementById('indexnav').className += " active";
+			}
+		}
+
+	</script>
 </head>
 <body>
 	<header>
 		<div id = "tabs">
-			<img src="http://i.imgur.com/uVGvVGE.jpg" class = "img-rounded" id="logoimg">
+			<img src="static/cobabslogo.png" class = "img-rounded" id="logoimg">
 			<ul class = "nav nav-pills ">
-				<li class = "nav-item"><a class = "nav-link active" href = "index.html">{{Home}}</a></li>
-				<li class = "nav-item"><a class = "nav-link" href = "menu.html">{{menu}}</a></li>
-				<li class = "nav-item"><a class = "nav-link" href = "about.html">{{about}}</a></li>
-				<li class = "nav-item"><a class = "nav-link" href = "online.html">{{online}}</a></li>
-				<li class = "nav-item"><a class = "nav-link" href = "login.html">{{Login}}</a></li>
+				<li id = "indexnav"><a class = "nav-link active" href = "index.html">{{Home}}</a></li>
+				<li id = "menunav"><a class = "nav-link" href = "menu.html">{{menu}}</a></li>
+				<li id = "aboutnav"><a class = "nav-link" href = "about.html">{{about}}</a></li>
+				<li id = "onlinenav"><a class = "nav-link" href = "online.html">{{online}}</a></li>
+				<li id = "contactnav"><a class = "nav-link" href = "contact.html">{{Contact}}</a></li>
 			</ul>
 		</div>
 
@@ -32,14 +59,20 @@
 	{% endblock %}
 	<footer class= "footer">
 		<div class = "container">
-			<div>
+			<div class = "left">
 				<p>
-					Location: 1234 Less Formal Road <br>
-							  Clothing City, MI
+					Location: <br>
+					1234 Less Formal Road <br>
+					Clothing City, MI
 				</p>
 			</div>
-			<div>
-				<p>Dine in and Take out</p>
+			<div class = "right">
+				<p>
+					Dine in, take out, or delivery<br>
+					Phone line #1: 734-555-1234<br>
+					Phone line #2: 734-555-4321
+				</p>
+
 			</div>
 		</div>
 	</footer>

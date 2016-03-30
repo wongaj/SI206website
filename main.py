@@ -32,18 +32,21 @@ class IndexHandler(webapp2.RequestHandler):
         pathstring = self.request.path
         template = JINJA_ENVIRONMENT.get_template('templates/index.html')
         if pathstring == "/index.html":
-            self.response.write(template.render({'title': 'Home', 'Home':'Home', 'about':'About', 'menu':'Menu', 'online':'Order Online', 'Login':'Contact'}))
+            self.response.write(template.render({'title': 'Home', 'Home':'Home', 'about':'About', 'menu':'Menu', 'online':'Order Online', 'Contact':'Contact'}))
         elif pathstring == "/about.html":
             template = JINJA_ENVIRONMENT.get_template(templatestring+pathstring)
-            self.response.write(template.render({'title': 'About', 'Home':'Home', 'about':'About', 'menu':'Menu', 'online':'Order Online', 'Login':'Contact'}))
+            self.response.write(template.render({'title': 'About', 'Home':'Home', 'about':'About', 'menu':'Menu', 'online':'Order Online', 'Contact':'Contact'}))
         elif pathstring == "/menu.html":
             template = JINJA_ENVIRONMENT.get_template(templatestring+pathstring)
-            self.response.write(template.render({'title': 'Menu', 'Home':'Home', 'about':'About', 'menu':'Menu', 'online':'Order Online', 'Login':'Contact'}))
+            self.response.write(template.render({'title': 'Menu', 'Home':'Home', 'about':'About', 'menu':'Menu', 'online':'Order Online', 'Contact':'Contact'}))
         elif pathstring == "/online.html":
             template = JINJA_ENVIRONMENT.get_template(templatestring+pathstring)
-            self.response.write(template.render({'title':'Order Online', 'Home':'Home', 'about':'About', 'menu':'Menu', 'online':'Order Online', 'Login':'Contact'}))    
+            self.response.write(template.render({'title':'Order Online', 'Home':'Home', 'about':'About', 'menu':'Menu', 'online':'Order Online', 'Contact':'Contact'}))    
+        elif pathstring == "/contact.html":
+            template = JINJA_ENVIRONMENT.get_template(templatestring+pathstring)
+            self.response.write(template.render({'title':'Contact', 'Home':'Home', 'about':'About', 'menu':'Menu', 'online':'Order Online', 'Contact':'Contact'}))
         else:
-            self.response.write(template.render({'title': 'Home',  'Home':'HOME', 'about':'About', 'menu':'Menu', 'online':'Order Online', 'Login':'Contact'}))
+            self.response.write(template.render({'title': 'Home',  'Home':'HOME', 'about':'About', 'menu':'Menu', 'online':'Order Online', 'Contact':'Contact'}))
                 
 
 class LoginHandler(webapp2.RequestHandler):
@@ -70,6 +73,6 @@ app = webapp2.WSGIApplication([
     ('/about.html', IndexHandler),
     ('/menu.html', IndexHandler),
     ('/online.html', IndexHandler),
-    ('/login.html', LoginHandler),
+    ('/contact.html', IndexHandler),
     ('success.html', LoginHandler)
 ], debug=True)
