@@ -1,5 +1,114 @@
 {% extends "templates/base.html" %}
 {% block content %} 
+<script type="text/javascript">
+	var foodarray = new Array(9);
+	for (var i = foodarray.length - 1; i >= 0; i--) {
+		foodarray[i] = false;
+	};
+	var food_cost = 0;
+	var taxes = 0;
+	var total = 0;
+	function deliverycheck(){
+		if(!document.getElementById('delivery').checked){
+			document.getElementById('addressbox').disabled = true;
+		}
+		else{
+			document.getElementById('addressbox').disabled = false;
+		}
+	}
+	function update_order(variable){
+		if(foodarray[variable]){
+			if(variable <= 1){
+				food_cost -= 10;
+			}
+			else if(variable > 1 && variable < 6){
+				food_cost -= 12;
+			}
+			else if(variable == 6){
+				food_cost -= 1;
+			}
+			else if(variable == 7){
+				food_cost -= 3;
+			}
+			else{
+				food_cost -= 2;
+			}
+			foodarray[variable] = false;
+		}
+		else{
+			if(variable <= 1){
+				food_cost += 10;
+			}
+			else if(variable > 1 && variable < 6){
+				food_cost += 12;
+			}
+			else if(variable == 6){
+				food_cost += 1;
+			}
+			else if(variable == 7){
+				food_cost += 3;
+			}
+			else{
+				food_cost += 2;
+			}
+			foodarray[variable] = true;
+		}
+		update_imgs();
+		update_totals();
+	}
+
+	function update_imgs(){
+		for (var i = foodarray.length - 1; i >= 0; i--) {
+			if(foodarray[i]){
+				document.getElementById(i.toString()).className = "gridimg orderimg";
+			}
+			else{
+				document.getElementById(i.toString()).className = "gridimg";
+			}
+		};
+	}
+	function update_totals(){
+		var printstring = "";
+		for (var i = foodarray.length - 1; i >= 0; i--) {
+			if(foodarray[i]){
+				if(i == 0){
+					printstring += "Pepperoni Pizza - $10 <br>";
+				}
+				else if(i == 1){
+					printstring += "Cheese Pizza - $10 <br>";
+				}
+				else if(i == 2){
+					printstring += "Ham and Olive Pizza - $12 <br>";
+				}
+				else if(i == 3){
+					printstring += "Bacon and Tomato Pizza - $12 <br>";
+				}
+				else if(i == 4){
+					printstring += "Mushroom and Pepperoni Pizza - $12 <br>";
+				}
+				else if(i == 5){
+					printstring += "Pulled Pork Pizza - $12 <br>";
+				}
+				else if(i == 6){
+					printstring += "Water - $1 <br>";
+				}
+				else if(i == 7){
+					printstring += "Milkshake - $3 <br>";
+				}
+				else{
+					printstring += "Soft Drink - $2 <br>";
+				}
+
+			}
+		}
+		taxes = Math.ceil(food_cost * 0.06*100)/100;
+		printstring += "Subtotal: $" + food_cost + "<br>" + "Taxes: $" + taxes;
+		document.getElementById("itemsordered").innerHTML = printstring;
+		total = food_cost + taxes;
+		document.getElementById("totals").innerHTML = "$" + total;
+	}
+
+</script>
 <div class = "tabtitle">
 	Order Online
 </div>
@@ -9,7 +118,101 @@
 			<h1>
 				Order Using Our Online System
 			</h1>
+			<h2>
+				Click on the images to order.
+			</h2>
 		</div>
+		<div class = "row">
+			<div class = "col-sm-4">
+				<a href="#"></a>
+				<img src="static/pepperoni.png" class="gridimg" id = "0" onclick="update_order(0)">
+				Pepperoni Pizza - $10
+			</div>
+			<div class = "col-sm-4">
+				<img src="static/cheese.png"class="gridimg" id="1" onclick="update_order(1)">
+				Cheese Pizza - $10
+			</div>
+			<div class = "col-sm-4">
+				<img src="static/hamolives.png"class="gridimg" id="2" onclick="update_order(2)">
+				Ham and Olive Pizza - $12
+			</div>
+		</div>
+		<div class = "row">
+			<div class = "col-sm-4">
+				<img src="static/bacontomato.png" class="gridimg" id="3" onclick="update_order(3)">
+				Bacon and Tomato Pizza - $12
+			</div>
+			<div class = "col-sm-4">
+				<img src="static/mushroompepperoni.png" class="gridimg" id="4" onclick="update_order(4)">
+				Mushroom and Pepperoni Pizza - $12
+			</div>
+			<div class = "col-sm-4">
+				<img src="static/pulledpork.png" class="gridimg" id="5" onclick="update_order(5)">
+				Pulled Pork Pizza - $12
+			</div>
+		</div>
+		<div class = "row">
+			<div class = "col-sm-4">
+				<img src="static/water.png" class="gridimg" id = "6" onclick="update_order(6)">
+				Water - $1
+			</div>
+			<div class = "col-sm-4">
+				<img src="static/milkshake.png" class="gridimg" id="7" onclick="update_order(7)">
+				Milkshake - $3
+			</div>
+			<div class = "col-sm-4">
+				<img src="static/softdrink.png" class="gridimg" id="8" onclick="update_order(8)">
+				Soft Drink - $2
+			</div>
+		</div>
+		<div class = "contentwindow">
+			<h1>Take Out or Delivery</h1>
+			Delivery is free if you order online
+			<div class="radio">
+			  <label>
+			    <input type="radio" name="radio" id="takeout" value="option1"  onclick = "deliverycheck()"checked>
+			    Take Out
+			  </label>
+			</div>
+			<div class="radio">
+			  <label>
+			    <input type="radio" name="radio" id="delivery" value="option2" onclick = "deliverycheck()">
+			    Delivery
+			  </label>
+			</div>
+			<fieldset class="form-group">
+    			<label for="addressbox">Enter Your Address</label>
+    			<input type="text" id="addressbox" rows="3" disabled></input>
+  			</fieldset>			
+		</div>
+		<div class = "contentwindow">
+			<h1>Enter Your Information</h1>
+			<fieldset class="form-group">
+    			<label for="name">Enter Your Name</label>
+    			<input type="text" id="name" rows="3" ></input>
+  			</fieldset>	
+  			<fieldset class="form-group">
+    			<label for="number">Enter Your Number</label>
+    			<input type="text" id="number" rows="3" ></input>
+  			</fieldset>	
+  			<fieldset class="form-group">
+    			<label for="email">Enter Your Email</label>
+    			<input type="email" id="email" rows="3" ></input>
+  			</fieldset>	
+		</div>
+		<div class = "contentwindow">
+			<h1>Review Order</h1>
+			<h2>Items Ordered</h2>
+			<div id = "itemsordered">
+				Subtotal: $0 <br>
+				Taxes: $0
+			</div>
+			<h2>Total</h2>
+			<div id = "totals">
+				$0.00
+			</div>
+		</div>
+
 	</div>
 </div>
 {%endblock%}

@@ -11,8 +11,24 @@
 	padding-bottom: -1px;
 }
 
+#indexbanner1{
+	background-attachment: fixed;
+	background-image: url(http://i.imgur.com/ag3LVCT.jpg);
+	background-repeat: no-repeat;
+	background-position: center;
+	height: 300px;
+}
+
+#aboutbanner1{
+	background-image: url(https://upload.wikimedia.org/wikipedia/commons/a/a3/UMichAngellHall.jpg);
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	background-position: center;
+	height: 300px;
+}
+
 .nav-link{
-	font-size: 2.5vh;
+	font-size: 1.5vw;
 	font-weight: bold;
 	
 }
@@ -26,11 +42,11 @@
 }
 
 .nav-link:hover{
-	color: red;
+	color: #DD0000;
 }
 
 .tabtitle{
-	background-color: red;
+	background-color: #DD0000;
 	font-size: 6vw;
 	font-weight: bold;
 	text-align: center;
@@ -41,7 +57,8 @@
 	border: 3px solid black;
 	border-radius: 10px;
 	padding : 10px;
-	margin: 10px;
+	margin: 60px;
+	text-align: center;
 }
 
 .right{
@@ -56,8 +73,48 @@
 	background-color: black;
 	color: white;
 	font-weight: bold;
+	bottom: 0px;
+	position: fixed;
+	width: 100%; 
+}
+.whitebacktext{
+	background-color: white;
+	font-size: 30px;
+	padding: 10px;
+	border-radius: 10px;
+	border: 2px solid black;
 }
 
+.centerbanner{
+	text-align: center;
+	margin-top: 80px;
+}
+
+.footerspace{
+	height: 90px;
+}
+
+.gridimg{
+	width: 60%;
+	display:block;
+    margin:auto;
+    border: 2px solid black;
+    border-radius: 10px;
+}
+
+.gridimg:hover{
+	width: 70%;
+
+}
+
+.orderimg{
+	opacity: 0.4;
+}
+.col-sm-4{
+	text-align: center;
+	font-weight: bold;
+	margin-bottom: 20px;
+}
 li{
 	background: white;
 	width: 14.8%;
@@ -81,19 +138,28 @@ ul{
 
 }
 
-@media screen and (max-width: 800px) and (min-width: 500px){
+@media screen and (max-width: 1000px) and (min-width: 700px){
 	li{
 		width: 31%;
 		margin: 5px;
 	}
+	ul{
+		padding-top: 2%;
+	}
 	#logoimg{
-		margin-bottom: 65px;
+		/*margin-bottom: 65px;*/
 		width: 28%
+	}
+	.nav-link{
+		font-size: 2.5vw;
 	}
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 700px) {
 	#logoimg{
 		width: 40%;
+	}
+	footer{
+		font-size: 10px;
 	}
 }

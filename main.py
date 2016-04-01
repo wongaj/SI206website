@@ -47,25 +47,7 @@ class IndexHandler(webapp2.RequestHandler):
             self.response.write(template.render({'title':'Contact', 'Home':'Home', 'about':'About', 'menu':'Menu', 'online':'Order Online', 'Contact':'Contact'}))
         else:
             self.response.write(template.render({'title': 'Home',  'Home':'HOME', 'about':'About', 'menu':'Menu', 'online':'Order Online', 'Contact':'Contact'}))
-                
 
-class LoginHandler(webapp2.RequestHandler):
-    def get(self):
-        logging.info("GET")
-        template = JINJA_ENVIRONMENT.get_template('templates/login.html')
-        self.response.write(template.render({'title': 'Login', 'Home':'Home', 'about':'About', 'menu':'Menu', 'Login':'LOGIN'}))
-    def post(self):   
-        logging.info("POST")
-        username = self.request.get('name')
-        userpass = self.request.get('pw')
-        if username == 'Colleen' and userpass == 'pass':
-            template = JINJA_ENVIRONMENT.get_template('templates/success.html')
-            self.response.write(template.render({'title': 'Logged in...', 'Home':'Home', 'about':'About', 'menu':'Menu', 'Login':'LOGIN', 'message':'You have successfully logged in!! Way to go!'}))
-            logging.info("correct input")
-        else:
-            template = JINJA_ENVIRONMENT.get_template('templates/login.html')
-            self.response.write(template.render({'title': 'Login', 'Home':'Home', 'about':'About', 'menu':'Menu', 'Login':'LOGIN', 'message':'Bad credentials. Try again.'}))
-            logging.info("incorrect input. try again")
 
 app = webapp2.WSGIApplication([
     ('/', IndexHandler),
@@ -73,6 +55,5 @@ app = webapp2.WSGIApplication([
     ('/about.html', IndexHandler),
     ('/menu.html', IndexHandler),
     ('/online.html', IndexHandler),
-    ('/contact.html', IndexHandler),
-    ('success.html', LoginHandler)
+    ('/contact.html', IndexHandler)
 ], debug=True)
